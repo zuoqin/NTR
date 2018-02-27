@@ -25,10 +25,6 @@ public class Polygon
     return s;
    }
 
-   public static double trianglesquare( double a, double b, double c, double d, double e, double f){
-       return Math.abs(  (a-c) * (b-f) - (b-d) * (a-e) ) / 2.0;
-   }
-
    public static boolean isdotinsidepolygon(double a, double b, double [] polygon)
    {
        double s = 0.0;
@@ -39,12 +35,12 @@ public class Polygon
 
            double e = i >= polygon.length ? polygon[0] : polygon[i];
            double f = i >= polygon.length ? polygon[1] : polygon[i + 1];
-           s = s + trianglesquare( a, b, c, d, e, f);        
+           s = s + polygonArea( new double[] {a, b, c, d, e, f});        
            c = e;
            d = f;
        }
        
-       if(Math.abs(s / polygonArea(polygon) - 1) > 0.0000000001){
+       if(Math.abs(s / polygonArea(polygon) - 1) > 0.000000000000001){
          return false;
        }
        else{
